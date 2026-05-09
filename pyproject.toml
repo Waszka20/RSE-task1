@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fasttrajectory"
+version = "0.1.0"
+description = "Numba-accelerated projectile motion simulator"
+authors = [
+    { name = "Piotr Waszak" }
+]
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+
+dependencies = [
+    "numpy",
+    "numba",
+]
+
+requires-python = ">=3.10"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
