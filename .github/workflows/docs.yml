@@ -1,0 +1,28 @@
+name: pdoc
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  pdoc:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -e .
+      - run: pip install pdoc
+
+      - run: python -m pdoc -o html src/fasttrajectory
+
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: html

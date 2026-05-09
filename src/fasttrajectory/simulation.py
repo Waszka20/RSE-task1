@@ -1,3 +1,7 @@
+"""
+Projectile motion simulation using Numba.
+"""
+
 import numpy as np
 from numba import njit
 
