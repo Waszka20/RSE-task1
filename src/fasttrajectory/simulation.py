@@ -64,3 +64,33 @@ def simulate_projectile(
         ys.append(y)
 
     return np.array(xs), np.array(ys)
+
+
+
+def flight_time(
+    velocity: float,
+    angle_deg: float,
+    gravity: float = 9.81,
+) -> float:
+    """
+    Compute total projectile flight time without air resistance.
+
+    Parameters
+    ----------
+    velocity : float
+        Initial velocity in m/s.
+
+    angle_deg : float
+        Launch angle in degrees.
+
+    gravity : float
+        Gravitational acceleration in m/s^2.
+
+    Returns
+    -------
+    float
+        Total flight time in seconds.
+    """
+    angle_rad = np.radians(angle_deg)
+
+    return 2 * velocity * np.sin(angle_rad) / gravity

@@ -1,6 +1,6 @@
 import numpy as np
 
-from fasttrajectory import simulate_projectile
+from fasttrajectory import simulate_projectile, flight_time
 
 
 def test_simulation_returns_arrays():
@@ -38,3 +38,11 @@ def test_projectile_reaches_positive_height():
     )
 
     assert np.max(y) > 0
+
+def test_flight_time_positive():
+    t = flight_time(
+        velocity=50,
+        angle_deg=45,
+    )
+
+    assert t > 0
