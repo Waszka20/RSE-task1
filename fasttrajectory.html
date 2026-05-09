@@ -26,6 +26,9 @@
             <li>
                     <a class="function" href="#simulate_projectile">simulate_projectile</a>
             </li>
+            <li>
+                    <a class="function" href="#flight_time">flight_time</a>
+            </li>
     </ul>
 
 
@@ -49,7 +52,7 @@ fasttrajectory    </h1>
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">simulate_projectile</span><span class="p">,</span> <span class="n">flight_time</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;simulate_projectile&quot;</span><span class="p">]</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;simulate_projectile&quot;</span><span class="p">,</span> <span class="s2">&quot;flight_time&quot;</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -146,6 +149,68 @@ gravity : float
 
 <p>tuple[np.ndarray, np.ndarray]
     Arrays of x and y coordinates.</p>
+</div>
+
+
+                </section>
+                <section id="flight_time">
+                            <input id="flight_time-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">flight_time</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">velocity</span><span class="p">:</span> <span class="nb">float</span>, </span><span class="param"><span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span>, </span><span class="param"><span class="n">gravity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">9.81</span></span><span class="return-annotation">) -> <span class="nb">float</span>:</span></span>
+
+                <label class="view-source-button" for="flight_time-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#flight_time"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="flight_time-71"><a href="#flight_time-71"><span class="linenos">71</span></a><span class="k">def</span><span class="w"> </span><span class="nf">flight_time</span><span class="p">(</span>
+</span><span id="flight_time-72"><a href="#flight_time-72"><span class="linenos">72</span></a>    <span class="n">velocity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="flight_time-73"><a href="#flight_time-73"><span class="linenos">73</span></a>    <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="flight_time-74"><a href="#flight_time-74"><span class="linenos">74</span></a>    <span class="n">gravity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">9.81</span><span class="p">,</span>
+</span><span id="flight_time-75"><a href="#flight_time-75"><span class="linenos">75</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="flight_time-76"><a href="#flight_time-76"><span class="linenos">76</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="flight_time-77"><a href="#flight_time-77"><span class="linenos">77</span></a><span class="sd">    Compute total projectile flight time without air resistance.</span>
+</span><span id="flight_time-78"><a href="#flight_time-78"><span class="linenos">78</span></a>
+</span><span id="flight_time-79"><a href="#flight_time-79"><span class="linenos">79</span></a><span class="sd">    Parameters</span>
+</span><span id="flight_time-80"><a href="#flight_time-80"><span class="linenos">80</span></a><span class="sd">    ----------</span>
+</span><span id="flight_time-81"><a href="#flight_time-81"><span class="linenos">81</span></a><span class="sd">    velocity : float</span>
+</span><span id="flight_time-82"><a href="#flight_time-82"><span class="linenos">82</span></a><span class="sd">        Initial velocity in m/s.</span>
+</span><span id="flight_time-83"><a href="#flight_time-83"><span class="linenos">83</span></a>
+</span><span id="flight_time-84"><a href="#flight_time-84"><span class="linenos">84</span></a><span class="sd">    angle_deg : float</span>
+</span><span id="flight_time-85"><a href="#flight_time-85"><span class="linenos">85</span></a><span class="sd">        Launch angle in degrees.</span>
+</span><span id="flight_time-86"><a href="#flight_time-86"><span class="linenos">86</span></a>
+</span><span id="flight_time-87"><a href="#flight_time-87"><span class="linenos">87</span></a><span class="sd">    gravity : float</span>
+</span><span id="flight_time-88"><a href="#flight_time-88"><span class="linenos">88</span></a><span class="sd">        Gravitational acceleration in m/s^2.</span>
+</span><span id="flight_time-89"><a href="#flight_time-89"><span class="linenos">89</span></a>
+</span><span id="flight_time-90"><a href="#flight_time-90"><span class="linenos">90</span></a><span class="sd">    Returns</span>
+</span><span id="flight_time-91"><a href="#flight_time-91"><span class="linenos">91</span></a><span class="sd">    -------</span>
+</span><span id="flight_time-92"><a href="#flight_time-92"><span class="linenos">92</span></a><span class="sd">    float</span>
+</span><span id="flight_time-93"><a href="#flight_time-93"><span class="linenos">93</span></a><span class="sd">        Total flight time in seconds.</span>
+</span><span id="flight_time-94"><a href="#flight_time-94"><span class="linenos">94</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="flight_time-95"><a href="#flight_time-95"><span class="linenos">95</span></a>    <span class="n">angle_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle_deg</span><span class="p">)</span>
+</span><span id="flight_time-96"><a href="#flight_time-96"><span class="linenos">96</span></a>
+</span><span id="flight_time-97"><a href="#flight_time-97"><span class="linenos">97</span></a>    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">velocity</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span> <span class="o">/</span> <span class="n">gravity</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Compute total projectile flight time without air resistance.</p>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>velocity : float
+    Initial velocity in m/s.</p>
+
+<p>angle_deg : float
+    Launch angle in degrees.</p>
+
+<p>gravity : float
+    Gravitational acceleration in m/s^2.</p>
+
+<h2 id="returns">Returns</h2>
+
+<p>float
+    Total flight time in seconds.</p>
 </div>
 
 
